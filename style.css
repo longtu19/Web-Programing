@@ -1,0 +1,19 @@
+#bar {
+    width: 40%;
+    height: 47px;
+    border-radius: 30px;
+    border: 1px solid gray;
+    position: relative;
+    padding-left: 20px;
+    top: 360px;
+    left: 30%;
+}
+#search {
+    left: 10px;
+    top: 435px;
+    position: relative;
+    height: 50%;
+    width: 190px;
+    
+}
+
