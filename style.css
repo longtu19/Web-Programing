@@ -1,19 +1,33 @@
 #bar {
     width: 40%;
-    height: 47px;
+    height: 45px;
     border-radius: 30px;
     border: 1px solid gray;
     position: relative;
     padding-left: 20px;
-    top: 360px;
+    top: 250px;
     left: 30%;
 }
 #search {
     left: 10px;
-    top: 435px;
+    top: 320px;
     position: relative;
-    height: 50%;
-    width: 190px;
+    background: rgba(white, white, white, 0.1);
+    
+    height: 40px ;
+    width: 120px;
     
 }
+a{
+    text-decoration: none;
+    color: black;
+    position: relative;
+    left: 80%;
+    top: 10px;
+    
+}
+a:hover{
+    text-decoration: underline;
+}
 
+ 
