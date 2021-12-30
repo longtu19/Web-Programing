@@ -1,33 +1,73 @@
 #bar {
+    background: url("file:///Users/longhuynh/Downloads/314807_search_icon.png");
+    background-repeat: no-repeat;
+    background-position: 15px;
+    background-size: 20px;
     width: 40%;
     height: 45px;
     border-radius: 30px;
     border: 1px solid gray;
     position: relative;
-    padding-left: 20px;
-    top: 250px;
+    text-indent: 40px;
+    top: 240px;
     left: 30%;
 }
-#search {
-    left: 10px;
-    top: 320px;
+.button {
+    top: 310px;
     position: relative;
-    background: rgba(white, white, white, 0.1);
-    
+    background-color: rgba(247, 247, 247, 0.938);
+    color: rgba(22, 21, 21, 0.788);
     height: 40px ;
     width: 120px;
+    margin-left: 4px;
+    border-width: 0px;
     
 }
+
 a{
     text-decoration: none;
     color: black;
     position: relative;
     left: 80%;
     top: 10px;
+    padding: 5px;
     
 }
 a:hover{
     text-decoration: underline;
 }
+label{
+    display: inline-block;
+    width: 180px;
+}
+div{
+    margin-bottom: 20px;
+    position: relative;
+    top: 180px;
+    left: 50px;
+}
+.as_bar{
+    width: 600px;
+    height: 24px;
+    text-indent: 7px;
+    border-color: rgb(235, 239, 241);
+    border-width: 1px;
+}
+#as{
+    position: relative;
+    top: 200px;
+    left: 713px;
+    height: 30px;
+    background-color: rgb(59, 126, 226);
+    color: white;
+    font: bold;
+    border-width: 1px;
+
+}
+#find{
+    font-size: 19px;
+}
+
+
 
  
