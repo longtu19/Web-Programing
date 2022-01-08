@@ -9,7 +9,7 @@
 
     <ul>
         {% for entry in entries %}
-            <a href="{% url 'page' entry %}">{{ entry }}</a>
+            <a href="{% url 'encyclo:page' entry %}">{{ entry }}</a>
         {% endfor %}
     </ul>
 
