@@ -17,9 +17,18 @@ def index(request):
         form = newEncycloForm(request.POST)
         if form.is_valid():
             entry = form.cleaned_data["entry"]
-            return HttpResponseRedirect(reverse("encyclo:page",  args=(entry,)))
+            entry = entry.lower()
+            if entry in util.list_entries():
+                return HttpResponseRedirect(reverse("encyclo:page",  args=(entry,)))
+            return render(request, "encyclopedia/searchRes.html", {
+                "entries": util.list_entries(),
+                "form": newEncycloForm(request.POST),
+                "keys": entry
+
+            })
         else:
             return form.errors
+            
     return render(request, "encyclopedia/index.html", {
         "entries": util.list_entries(),
         "form": newEncycloForm()
@@ -27,7 +36,6 @@ def index(request):
 def content(request, title):
     page = util.get_entry(title)
     return render(request, "encyclopedia/entries.html", {
-
         "title": title.capitalize(),
         "entry": markdowner.convert(page)
     })

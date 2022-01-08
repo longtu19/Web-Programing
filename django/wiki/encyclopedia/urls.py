@@ -6,4 +6,5 @@ app_name = "encyclo"
 urlpatterns = [
     path("", views.index, name="index"),
     path("<str:title>", views.content, name="page")
+
 ]
