@@ -7,11 +7,16 @@ from . import util
 from markdown2 import Markdown
 from django import forms
 import math
+from django.utils.safestring import mark_safe
 
 markdowner = Markdown()
 
 class newEncycloForm(forms.Form):
     entry = forms.CharField(label = "Search Encyclopedia")
+class newTitleForm(forms.Form):
+    title = forms.CharField(max_length = 100, widget=forms.TextInput(attrs={'class': 'myTitle'}))
+class newContentForm(forms.Form):
+    content = forms.CharField(widget=forms.Textarea(attrs ={'class': 'myContent'}))
 class Counter():
     count = 0
     def increment(self):
@@ -48,5 +53,30 @@ def content(request, title):
     return render(request, "encyclopedia/entries.html", {
         "title": title.capitalize(),
         "entry": markdowner.convert(page)
+    })
+
+def new_page(request):
+    if request.method == "POST":
+        form1 = newTitleForm(request.POST)
+        form2 = newContentForm(request.POST)
+        if form1.is_valid() and form2.is_valid():
+            title = form1.cleaned_data['title']
+            content = form2.cleaned_data['content']
+            util.save_entry(title, content)
+           
+            return HttpResponseRedirect(reverse("encyclo:page", args=(title, )))
+        else:
+            return render(request, "encyclopedia/newPage.html", {
+                "title": newTitleForm(),
+                "content": newContentForm()
+            })
+
+
+
+
+    return render(request, "encyclopedia/newPage.html", {
+        "title": newTitleForm(),
+        "content": newContentForm()
+
     })
 
