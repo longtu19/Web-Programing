@@ -84,12 +84,41 @@ def new_page(request):
                 "content": newContentForm()
             })
 
-
-
-
     return render(request, "encyclopedia/newPage.html", {
         "title": newTitleForm(),
         "content": newContentForm()
 
     })
+def edit(request, title):
+    oldT = title
+    content = util.get_entry(title)
+    if request.method == "GET":
+        return render(request, "encyclopedia/editPage.html", {
+            "title": newTitleForm(initial = {'title': title}),
+            "content": newContentForm(initial={'content': content})
+        })
+    else:
+        form1 = newTitleForm(request.POST)
+        form2 = newContentForm(request.POST)
+        if form1.is_valid() and form2.is_valid():
+            newTitle = form1.cleaned_data['title']
+            newContent = form2.cleaned_data['content']
+            newTitle = newTitle.lower()
+            if oldT in util.list_entries():
+                content = util.get_entry(oldT)
+                content = newContent
+                oldT = newTitle  
+                util.save_entry(oldT, content)  
+                return HttpResponseRedirect(reverse("encyclo:page", args=(oldT, )))
+            else:
+                util.save_entry(newTitle, newContent)
+                return HttpResponseRedirect(reverse("encyclo:page", args=(newTitle, )))
+        
+        return render(request, "encyclopedia/editPage.html", {
+            "title": newTitleForm(initial = {'title': title}),
+            "content": newContentForm(initial = {'content': content})
+
+        })
+           
+
 
