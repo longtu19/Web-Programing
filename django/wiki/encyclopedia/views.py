@@ -62,9 +62,22 @@ def new_page(request):
         if form1.is_valid() and form2.is_valid():
             title = form1.cleaned_data['title']
             content = form2.cleaned_data['content']
-            util.save_entry(title, content)
-           
-            return HttpResponseRedirect(reverse("encyclo:page", args=(title, )))
+            title = title.lower()
+            if title not in util.list_entries():
+                util.save_entry(title, content)  
+                return HttpResponseRedirect(reverse("encyclo:page", args=(title, )))
+            else:
+                count = Counter()
+                count.increment()
+                return render(request, "encyclopedia/newPage.html", {
+                "title": newTitleForm(),
+                "content": newContentForm(),
+                "count": count
+            })
+
+
+
+
         else:
             return render(request, "encyclopedia/newPage.html", {
                 "title": newTitleForm(),
