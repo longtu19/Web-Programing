@@ -90,7 +90,6 @@ def new_page(request):
 
     })
 def edit(request, title):
-    oldT = title
     content = util.get_entry(title)
     if request.method == "GET":
         return render(request, "encyclopedia/editPage.html", {
