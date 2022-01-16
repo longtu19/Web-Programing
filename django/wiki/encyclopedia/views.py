@@ -8,6 +8,8 @@ from markdown2 import Markdown
 from django import forms
 import math
 from django.utils.safestring import mark_safe
+import random
+
 
 markdowner = Markdown()
 
@@ -50,7 +52,7 @@ def index(request):
     })
 def content(request, title):
     page = util.get_entry(title)
-    return render(request, "encyclopedia/entries.html", {
+    return render(request, "encyclopedia/entry.html", {
         "title": title.capitalize(),
         "entry": markdowner.convert(page)
     })
@@ -74,10 +76,6 @@ def new_page(request):
                 "content": newContentForm(),
                 "count": count
             })
-
-
-
-
         else:
             return render(request, "encyclopedia/newPage.html", {
                 "title": newTitleForm(),
@@ -108,6 +106,15 @@ def edit(request, title):
             "content": newContentForm(initial = {'content': content})
 
         })
+def rand_page(request):
+    entries = util.list_entries()
+    entry = random.choice(entries)
+    page = util.get_entry(entry)
+
+    return render(request, "encyclopedia/entry.html", {
+        "title": entry,
+        "entry": markdowner.convert(page)
+    })
            
 
 
