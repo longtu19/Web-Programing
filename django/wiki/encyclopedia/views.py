@@ -98,21 +98,11 @@ def edit(request, title):
             "content": newContentForm(initial={'content': content})
         })
     else:
-        form1 = newTitleForm(request.POST)
         form2 = newContentForm(request.POST)
-        if form1.is_valid() and form2.is_valid():
-            newTitle = form1.cleaned_data['title']
+        if form2.is_valid():
             newContent = form2.cleaned_data['content']
-            newTitle = newTitle.lower()
-            if oldT in util.list_entries():
-                content = util.get_entry(oldT)
-                content = newContent
-                oldT = newTitle  
-                util.save_entry(oldT, content)  
-                return HttpResponseRedirect(reverse("encyclo:page", args=(oldT, )))
-            else:
-                util.save_entry(newTitle, newContent)
-                return HttpResponseRedirect(reverse("encyclo:page", args=(newTitle, )))
+            util.save_entry(title, newContent)
+            return HttpResponseRedirect(reverse("encyclo:page", args=(title, )))
         
         return render(request, "encyclopedia/editPage.html", {
             "title": newTitleForm(initial = {'title': title}),
