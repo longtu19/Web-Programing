@@ -11,6 +11,12 @@
        
     </head>
     <body>
+        <style>
+            .my-custom-row{
+                background-color: bisque;
+                height: 400px;
+            }
+        </style>
         <div class = "container">
             <div class = "row">
                 <div class = "col-sm-6 col-md-6 col-lg-6">Col One</div>
@@ -26,12 +32,13 @@
                 <div class="col-sm-6 col-lg-1">Col One</div>
                 <div class="col-sm-6 col-lg-6 offset-2">Col Two</div>
             </div>
-            <div class="row">
+
+            <div class="row my-custom-row justify-content-center align-items-center ">
                 <div class="col-sm-4">
                     <div class = "p-3 border bg-light">Col One</div>
                 </div>
                 <div class="col-sm-4">
-                    <div class = "p-3 border bg-gradient">Col Two</div>
+                    <div class = "p-3 border bg-light">Col Two</div>
                 </div>
             </div>
 
