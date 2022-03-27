@@ -5,32 +5,21 @@ import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle } from 're
 
 class DishDetail extends Component {
     constructor(props){
-        super(props)
-
-        // this.state = {
-        //     selected: null
-
-        // }
-
+        super(props);
 
     }
 
-    // selectDish(dish){
-    //     this.setState(selected = dish)
-
-    // }
+   
 
     renderDish(dish){
         if (dish != null){
             return (
- 
                 <div className = "col-xs-12 col-sm-12 col-md-5 m-1">
                     <Card>
                         <CardImg width="100%" src = {dish.image} alt = {dish.name}/>
                         <CardBody>
                             <CardTitle>{dish.name}</CardTitle>
                             <CardText>{dish.description}</CardText>
-
                         </CardBody>
                     </Card>
 
@@ -41,7 +30,9 @@ class DishDetail extends Component {
         }
         else{
             return (
-                <div></div>
+                <div>
+        
+                </div>
             )
         }
     }
@@ -57,9 +48,8 @@ class DishDetail extends Component {
                 return (
                     <div>
                         <ul className = "list-unstyled">
-                            <li>{e.comment}</li>
-                            
-                            <li className = "m-3">-- {e.author}, {e.date}</li>
+                            <li>{e.comment}</li>   
+                            <li className = "m-3">-- {e.author}, {new Intl.DateTimeFormat('en-US', {year: 'numeric', month: 'short', day: '2-digit'}).format(new Date(Date.parse(e.date)))}</li>
                         </ul>
                     </div>
 
@@ -70,12 +60,7 @@ class DishDetail extends Component {
                 <div className = "col-xs-12 col-sm-12 col-md-5 m-1" >
                     
                         <h4>Comments</h4>
-                        {com}
-
-
-                    
-                    
-                    
+                        {com}     
        
                 </div>
             )
@@ -88,11 +73,15 @@ class DishDetail extends Component {
 
     render(){
         return (
-            <div className = "row">
-                {this.renderDish(this.props.select)}
-                {this.renderComments(this.props.select)}
+            <div className = "container">
+                <div className = "row">
+                    {this.renderDish(this.props.dish)}
+                    {this.renderComments(this.props.dish)}
                 
+                </div>
+
             </div>
+            
            
         )
         
